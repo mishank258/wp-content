@@ -1,25 +1,39 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title>Kalinga Travels</title>
-</head>
-<body>
+<?php get_header(); ?>
 
-  <h1><?php bloginfo('name'); ?></h1>
-  <p><?php bloginfo('description'); ?></p>
+<?php if (have_posts()) : ?>
 
-  <?php if (have_posts()) : ?>
-
+  <div class="row g-4">
     <?php while (have_posts()) : the_post(); ?>
-      <article>
-        <h2><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h2>
-        <?php the_excerpt(); ?>
-      </article>
+      <div class="col-md-6 col-lg-4">
+        <article <?php post_class('card h-100 shadow-sm'); ?>>
+
+          <?php if (has_post_thumbnail()) : ?>
+            <a href="<?php the_permalink(); ?>">
+              <?php the_post_thumbnail('medium_large', ['class' => 'card-img-top']); ?>
+            </a>
+          <?php endif; ?>
+
+          <div class="card-body d-flex flex-column">
+            <h2 class="h5 card-title">
+              <a href="<?php the_permalink(); ?>" class="text-decoration-none"><?php the_title(); ?></a>
+            </h2>
+            <div class="card-text text-muted small mb-3"><?php the_excerpt(); ?></div>
+            <a href="<?php the_permalink(); ?>" class="btn btn-outline-primary btn-sm mt-auto align-self-start">
+              <?php esc_html_e('Read more', 'kalinga'); ?>
+            </a>
+          </div>
+
+        </article>
+      </div>
     <?php endwhile; ?>
+  </div>
 
-  <?php else : ?>
-    <p>No content found.</p>
-  <?php endif; ?>
+  <div class="mt-5">
+    <?php the_posts_pagination(); ?>
+  </div>
 
-</body>
-</html>
+<?php else : ?>
+  <p><?php esc_html_e('No content found.', 'kalinga'); ?></p>
+<?php endif; ?>
+
+<?php get_footer(); ?>

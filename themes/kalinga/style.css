@@ -6,3 +6,18 @@ Version: 1.0
 Requires PHP: 8.0
 Text Domain: kalinga
 */
+/* Keep images in post content inside their column */
+.entry-content img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Comfortable reading line height for articles */
+.entry-content {
+  line-height: 1.75;
+}
+
+/* Remove the default excerpt paragraph margin inside cards */
+.card-text p:last-child {
+  margin-bottom: 0;
+}
