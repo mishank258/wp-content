@@ -32,4 +32,4 @@
   </div>
 </nav>
 
-<main class="container py-5"></main>
+<main class="container py-5">
