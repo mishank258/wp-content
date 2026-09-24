@@ -1,0 +1,18 @@
+/* Hide the spinner unless a request is running */
+.kalinga-tours-spinner {
+  visibility: hidden;
+}
+
+.kalinga-tours.is-loading .kalinga-tours-spinner {
+  visibility: visible;
+}
+
+/* Fade the results while loading, and block clicks */
+.kalinga-tours-results {
+  transition: opacity 0.2s ease;
+}
+
+.kalinga-tours.is-loading .kalinga-tours-results {
+  opacity: 0.5;
+  pointer-events: none;
+}

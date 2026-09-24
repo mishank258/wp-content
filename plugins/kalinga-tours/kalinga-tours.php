@@ -22,7 +22,8 @@ require_once KALINGA_TOURS_PATH . 'includes/helpers.php';
 require_once KALINGA_TOURS_PATH . 'includes/post-types.php';
 require_once KALINGA_TOURS_PATH . 'includes/meta-boxes.php';
 require_once KALINGA_TOURS_PATH . 'includes/shortcodes.php';
-
+require_once KALINGA_TOURS_PATH . 'includes/assets.php';
+require_once KALINGA_TOURS_PATH . 'includes/ajax.php';
 // Runs once, when the plugin is activated
 function kalinga_tours_activate() {
     kalinga_tours_register_post_type();
