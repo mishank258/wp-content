@@ -1,0 +1,8 @@
+/*
+!.gitignore
+!themes/
+themes/*
+!themes/kalinga/
+!plugins/
+plugins/*
+!plugins/kalinga-tours/
