@@ -21,3 +21,11 @@ Text Domain: kalinga
 .card-text p:last-child {
   margin-bottom: 0;
 }
+
+/* Homepage hero banner */
+.kalinga-hero {
+  min-height: 60vh;
+  background-color: #1f2d3d;
+  background-size: cover;
+  background-position: center;
+}
