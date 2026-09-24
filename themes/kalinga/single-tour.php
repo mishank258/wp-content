@@ -19,9 +19,16 @@
         <?php the_post_thumbnail('large', ['class' => 'img-fluid rounded mb-4']); ?>
       <?php endif; ?>
 
-      <div class="entry-content">
+       <div class="entry-content">
         <?php the_content(); ?>
       </div>
+
+      <?php
+      if (function_exists('kalinga_tours_render_enquiry_form')) {
+          // The form HTML is escaped inside the plugin's template
+          echo kalinga_tours_render_enquiry_form(get_the_ID());
+      }
+      ?>
     </article>
 
     <!-- Booking sidebar -->
