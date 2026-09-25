@@ -28,6 +28,11 @@ require_once KALINGA_TOURS_PATH . 'includes/assets.php';
 require_once KALINGA_TOURS_PATH . 'includes/ajax.php';
 require_once KALINGA_TOURS_PATH . 'includes/enquiries.php';
 
+// Admin-only code: only loaded in the dashboard
+if (is_admin()) {
+    require_once KALINGA_TOURS_PATH . 'includes/admin-enquiries.php';
+}
+
 // Runs once, when the plugin is activated
 function kalinga_tours_activate() {
     kalinga_tours_create_tables();

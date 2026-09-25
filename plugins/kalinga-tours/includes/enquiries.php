@@ -43,6 +43,18 @@ function kalinga_tours_handle_enquiry() {
         wp_safe_redirect(add_query_arg('enquiry', 'sent', $redirect_url) . '#enquire');
         exit;
     }
+        // Rate limit: at most 3 enquiries per 10 minutes from the same IP address
+    $ip       = isset($_SERVER['REMOTE_ADDR']) ? sanitize_text_field(wp_unslash($_SERVER['REMOTE_ADDR'])) : '';
+    $rate_key = 'kalinga_enq_' . md5($ip);
+    $attempts = (int) get_transient($rate_key);
+
+    if ($attempts >= 3) {
+        kalinga_tours_enquiry_state([
+            'errors' => ['form' => __('You have sent several enquiries recently. Please wait a few minutes and try again.', 'kalinga-tours')],
+            'values' => [],
+        ]);
+        return;
+    }
 
     // 3. Read and sanitise every field
     $raw = function ($key) {
@@ -75,6 +87,9 @@ function kalinga_tours_handle_enquiry() {
         ]);
         return;
     }
+        // Count this submission towards the rate limit
+    set_transient($rate_key, $attempts + 1, 10 * MINUTE_IN_SECONDS);
+
 
     // 6. Then notify the admin by email
     kalinga_tours_send_enquiry_email($values, $enquiry_id);
